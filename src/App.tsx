@@ -1,19 +1,14 @@
-import React, { useState } from "react";
-import ReactTooltip from "react-tooltip";
-import MapChart from "./MapChart";
+import React from 'react'
+import MapWrapper from './components/MapWrapper'
+import {Provider} from "react-redux"
+import { store } from './app/store'
 
 const App = () => {
-    const [content, setContent] = useState("");
-    console.log("content",typeof content)
-    return (
-        <div>
-            <h1 className="text-3xl font-bold underline">
-                Hello world!
-            </h1>
-            <MapChart setTooltipContent={setContent}/>
-            <ReactTooltip>{content}</ReactTooltip>
-        </div>
-    );
+  return (
+    <Provider store={store}>
+      <MapWrapper/>
+    </Provider>
+  )
 }
 
 export default App

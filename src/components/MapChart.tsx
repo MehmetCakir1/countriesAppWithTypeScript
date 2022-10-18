@@ -56,4 +56,4 @@ const MapChart = ({ setTooltipContent }) => {
     );
 };
 
-export default memo(MapChart);
+export default MapChart;
