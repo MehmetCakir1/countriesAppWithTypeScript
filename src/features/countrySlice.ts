@@ -6,21 +6,20 @@ import { ICountry, IState } from "../types/interfaces";
 const initialState:IState={
     loading:false,
     error:"",
-    country:[],
+    country:<ICountry>{},
+    countryName:""
   
 }
 
 
 export const getCountry = createAsyncThunk(
-    "country/getCountry",async()=>{
-        // return fetch(`${BASE_URL}${country}`)
-        console.log("object");
-        return fetch(`${BASE_URL}Turkey`)
+    "country/getCountry",async(countryName:any)=>{
+        console.log("deneme",countryName)
+        return fetch(`${BASE_URL}${countryName}`)
                 .then(res=>{
                     return res.json() 
                 })
     }
-   
 )
 
 const countrySlice=createSlice({
@@ -34,7 +33,9 @@ const countrySlice=createSlice({
                       })
                     builder.addCase(getCountry.fulfilled,(state:IState,action:PayloadAction<any>)=>{
                         state.loading=false;
-                        state.country=(action.payload);
+                        state.country=action.payload[0];
+                        state.countryName=action.payload[0]?.name.common
+                        // console.log("payload",action.payload)
                     })
                     builder.addCase(getCountry.rejected,(state:IState)=>{
                         state.loading=false;

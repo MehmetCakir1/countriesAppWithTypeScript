@@ -1,4 +1,7 @@
-import React, { memo } from "react";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
+import { getCountry } from "../features/countrySlice";
+import {useNavigate} from "react-router-dom"
+import {useEffect} from "react"
 import {
     ZoomableGroup,
     ComposableMap,
@@ -6,12 +9,20 @@ import {
     Geography
 } from "react-simple-maps";
 
-const MapChart = ({ setTooltipContent }) => {
-   // we will use navigate with the onClick
-    const handleCountriesName = (e) => {
-        setTooltipContent(e.properties.name)
+const MapChart = ({ setTooltipContent,content }) => {
+    const navigate=useNavigate()
+   const dispatch=useAppDispatch()
+   const {countryName,country}=useAppSelector(state=>state.country)
 
-   }
+// console.log("country",country)
+// console.log("countryname",countryName)
+
+    const handleCountriesName = (e:any) => {
+        // setTooltipContent(e.properties?.name)
+        dispatch(getCountry(countryName))
+        // navigate(("/detail"))
+}
+
     return (
         <div data-tip="">
             <ComposableMap>
@@ -25,25 +36,26 @@ const MapChart = ({ setTooltipContent }) => {
                                     onMouseEnter={() => {
                                         setTooltipContent(geo.properties.name);
                                     }}
-                                    onClick={() => {
-                                        console.log("name",geo.properties.name)
-                                         setTooltipContent(geo.properties.name);
+                                    onClick={(geo) => {
+                                        handleCountriesName(geo)
                                     }}
                                     onMouseLeave={() => {
                                         setTooltipContent("");
                                     }}
                                     style={{
                                         default: {
-                                            fill: "#D6D6DA",
+                                            fill: "#15181b",
                                             outline: "none"
+                                            
                                         },
                                         hover: {
                                             fill: "#F53",
-                                            outline: "none"
+                                            outline: "none",
+                                            cursor:"pointer"
                                         },
                                         pressed: {
                                             fill: "#E42",
-                                            outline: "none"
+                                            outline: "none",
                                         }
                                     }}
                                 />
