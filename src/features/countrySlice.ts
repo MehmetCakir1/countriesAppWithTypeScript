@@ -7,7 +7,6 @@ const initialState:IState={
     loading:false,
     error:"",
     country:<ICountry>{},
-    countryName:""
   
 }
 
@@ -34,8 +33,6 @@ const countrySlice=createSlice({
                     builder.addCase(getCountry.fulfilled,(state:IState,action:PayloadAction<any>)=>{
                         state.loading=false;
                         state.country=action.payload[0];
-                        state.countryName=action.payload[0]?.name.common
-                        // console.log("payload",action.payload)
                     })
                     builder.addCase(getCountry.rejected,(state:IState)=>{
                         state.loading=false;

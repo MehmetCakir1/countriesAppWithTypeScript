@@ -12,15 +12,14 @@ import {
 const MapChart = ({ setTooltipContent,content }) => {
     const navigate=useNavigate()
    const dispatch=useAppDispatch()
-   const {countryName,country}=useAppSelector(state=>state.country)
+   const {country}=useAppSelector(state=>state.country)
 
-// console.log("country",country)
-// console.log("countryname",countryName)
+console.log("country",country)
 
-    const handleCountriesName = (e:any) => {
+    const handleCountriesName = () => {
         // setTooltipContent(e.properties?.name)
-        dispatch(getCountry(countryName))
-        // navigate(("/detail"))
+      
+        navigate("/detail",{state:content})
 }
 
     return (
@@ -37,7 +36,7 @@ const MapChart = ({ setTooltipContent,content }) => {
                                         setTooltipContent(geo.properties.name);
                                     }}
                                     onClick={(geo) => {
-                                        handleCountriesName(geo)
+                                        handleCountriesName()
                                     }}
                                     onMouseLeave={() => {
                                         setTooltipContent("");

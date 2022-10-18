@@ -2,7 +2,6 @@ export interface IState{
     loading:boolean;
     error:string;
     country:ICountry;
-    countryName:string;
 }
 
 
