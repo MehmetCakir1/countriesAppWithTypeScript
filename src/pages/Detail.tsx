@@ -10,22 +10,11 @@ import { BiWorld } from "react-icons/bi";
 import { IoArrowUndo } from "react-icons/io5";
 
 const Detail = () => {
-  const { country, loading } = useAppSelector((state) => state.country);
+  const { country, loading ,error} = useAppSelector((state) => state.country);
   const {state}=useLocation()
   const dispatch=useAppDispatch()
   const navigate=useNavigate()
-  const {
-    name,
-    currencies,
-    capital,
-    region,
-    languages,
-    borders,
-    area,
-    population,
-    flags,
-  } = country;
-
+  
  useEffect(() => {
   if(state==="Democratic Republic of Congo"){
     dispatch(getCountry("DR Congo"))
@@ -34,94 +23,117 @@ const Detail = () => {
 }
  }, [])
  
-console.log("first")
+//  if(Object.keys(country).length>0){
+//    const {
+//   name,
+//   currencies,
+//   capital,
+//   region,
+//   languages,
+//   borders,
+//   area,
+//   population,
+//   flags,
+// } = country;
+//  }
+
   return (
     <>
     {
       loading ? (
         <h1 className="text-3xl font-semibold text-center mt-5">LOADING...</h1>
       ):(
-        <>
-        <button className="text-red-500 text-4xl absolute left-3 top-3 bg-transparent border-0"
-        onClick={()=>navigate("/")}
-        ><IoArrowUndo/></button>
-        <h1 className="uppercase font-bold w-full text-center py-3 sm:py-9 text-3xl">{name?.common}</h1>
-    <main className="flex flex-col md:flex-row md:justify-between container m-auto ">
-        
-        <img src={flags?.svg} alt={name?.common}  className="w-full md:w-[50%] max-h-[420px] p-5 "/>
-      <section className="p-3 md:w-6/12">
-      <div className="flex items-center justify-start p-2">
-        <span className="inline-block w-[2rem] text-3xl text-slate-600"> <FaCity/></span>
-          {
-            capital?.map((cap:string,index:number)=>{
-              return(
-                <span key={index}>
-                  {cap}
-                </span>
-              )
-            })
-          }
-        </div>
-        <div className="flex items-center justify-start p-2">
-          <span className="inline-block w-[2rem] text-3xl text-blue-800"><BiWorld/></span>
-          {region}
-        </div>
-          <div className="flex items-center justify-start p-2 flex-wrap">
-            <span className="inline-block w-[2rem] text-3xl text-orange-600"><BsTranslate/></span>
-         
-          {
-            languages && Object.values(languages)?.map((lang:string,index:number)=>{
-              return(
-                  <span key={index} className="capitalize mr-1">{lang}</span>
-              )
-            })
-          }
-        </div>
-        <div className="flex items-center justify-start p-2">
-          <span className="inline-block w-[2rem] text-3xl text-emerald-700"> <GiMoneyStack/></span>
-          {
-            currencies && Object.values(currencies)?.map((curr:any,index:number)=>{
-              return(
-                <p key={index} className="mr-1">
-                  <span className="capitalize">{curr.name}</span>
-                  <span className="px-1">{curr.symbol}</span>
-                </p>
-              )
-            })
-          }
-          </div>
-        <div className="flex items-center justify-start p-2">
-          <span className="inline-block w-[2rem] text-3xl"><BsFillPeopleFill/></span>
+        country==undefined ? (
+          <>
+          <h1 className="text-3xl mt-9 sm:mt-[10rem] text-center "><span className="text-red-600 font-bold">{state}</span> Is Not Found</h1>
+          <button className="text-red-500 text-4xl absolute left-3 top-3 bg-transparent border-0"
+          onClick={()=>navigate("/")}
+          ><IoArrowUndo/></button>
+          </>
+        ):(
+          <>
+          <button className="text-red-500 text-4xl absolute left-3 top-3 bg-transparent border-0"
+          onClick={()=>navigate("/")}
+          ><IoArrowUndo/></button>
+          <h1 className="uppercase font-bold w-full text-center py-3 sm:py-9 text-4xl">{country.name?.common}</h1>
+      <main className="flex flex-col md:flex-row md:justify-between container m-auto text-xl">
           
-          {population} ({millify(Number(population),{
-          precision:2,
-          lowercase:false,
-          space:true,
-        })})
-        </div>
-        <div className="flex items-center justify-start p-2 flex-wrap">
-          <span className="inline-block w-[2rem] text-3xl text-cyan-600"><BsFillMapFill/></span>
-          {
-            borders?.length>0 ? borders.map((border:string,index:number)=>{
-              return(
-                  <span key={index} className="capitalize mr-1">{border}</span>
+          <img src={country.flags?.svg} alt={country.name?.common}  className="w-full md:w-[50%] max-w-[500px] m-auto max-h-[420px] p-5 "/>
+        <section className="p-3 md:w-6/12">
+        <div className="flex items-center justify-start p-2">
+          <span className="inline-block w-[2.5rem] text-3xl text-slate-600"> <FaCity/></span>
+            {
+              country.capital?.map((cap:string,index:number)=>{
+                return(
+                  <span key={index}>
+                    {cap}
+                  </span>
+                )
+              })
+            }
+          </div>
+          <div className="flex items-center justify-start p-2">
+            <span className="inline-block w-[2.5rem] text-3xl text-blue-800"><BiWorld/></span>
+            {country.region}
+          </div>
+            <div className="flex items-center justify-start p-2 flex-wrap">
+              <span className="inline-block w-[2.5rem] text-3xl text-orange-600"><BsTranslate/></span>
+           
+            {
+              country.languages && Object.values(country.languages)?.map((lang:string,index:number)=>{
+                return(
+                    <span key={index} className="capitalize mr-1">{lang}</span>
+                )
+              })
+            }
+          </div>
+          <div className="flex items-center justify-start p-2">
+            <span className="inline-block w-[2.5rem] text-3xl text-emerald-700"> <GiMoneyStack/></span>
+            {
+              country.currencies && Object.values(country.currencies)?.map((curr:any,index:number)=>{
+                return(
+                  <p key={index} className="mr-1">
+                    <span className="capitalize">{curr.name}</span>
+                    <span className="px-1 font-bold text-2xl"> {curr.symbol} </span>
+                  </p>
+                )
+              })
+            }
+            </div>
+          <div className="flex items-center justify-start p-2">
+            <span className="inline-block w-[2.5rem] text-3xl"><BsFillPeopleFill/></span>
+            
+            {country.population} ({millify(Number(country.population),{
+            precision:2,
+            lowercase:false,
+            space:true,
+          })})
+          </div>
+          <div className="flex items-center justify-start p-2 flex-wrap">
+            <span className="inline-block w-[2.5rem] text-3xl text-cyan-600"><BsFillMapFill/></span>
+            {
+              country.borders?.length>0 ?country.borders.map((border:string,index:number)=>{
+                return(
+                    <span key={index} className="capitalize mr-1">{border}</span>
+                )
+              }):(
+                <p>There is no border country!</p>
               )
-            }):(
-              <p>There is no border country!</p>
-            )
-          }
-        </div>
-        <div className="flex items-center justify-start p-2 flex-wrap">
-          <span className="inline-block w-[2rem] text-3xl text-pink-600"><BsPinMapFill/></span>
-          {area} km <sup>2</sup>  ({millify(Number(area),{
-          precision:2,
-          space:true,
-        })})
-        </div>
-      </section>
-    </main>
-        </>
-      )
+            }
+          </div>
+          <div className="flex items-center justify-start p-2 flex-wrap">
+            <span className="inline-block w-[2.5rem] text-3xl text-pink-600"><BsPinMapFill/></span>
+            {country.area} km <sup>2</sup> ({millify(Number(country.area),{
+            precision:2,
+            space:true,
+          })})
+          </div>
+        </section>
+      </main>
+          </>
+  
+        )
+             )
     }
       </>
   )

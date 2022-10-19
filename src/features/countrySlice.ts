@@ -13,7 +13,6 @@ const initialState:IState={
 
 export const getCountry = createAsyncThunk(
     "country/getCountry",async(countryName:any)=>{
-        console.log("deneme",countryName)
         return fetch(`${BASE_URL}${countryName}`)
                 .then(res=>{
                     return res.json() 
