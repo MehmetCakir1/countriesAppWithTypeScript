@@ -12,21 +12,17 @@ import {
 const MapChart = ({ setTooltipContent,content }) => {
     const navigate=useNavigate()
    const dispatch=useAppDispatch()
-   const {country}=useAppSelector(state=>state.country)
 
-console.log("country",country)
 
-    const handleCountriesName = () => {
-        // setTooltipContent(e.properties?.name)
-      
-        navigate("/detail",{state:content})
+    const handleCountriesName = () => {     
+               navigate("/detail",{state:content})
 }
 
     return (
-        <div data-tip="">
-            <ComposableMap>
-                <ZoomableGroup>
-                    <Geographies geography="/features.json">
+        <div data-tip="" >
+            <ComposableMap style={{height:"120vh",width:"100vw"}}>
+                <ZoomableGroup >
+                    <Geographies geography="/features.json" >
                         {({ geographies }) =>
                             geographies.map((geo) => (
                                 <Geography
@@ -44,18 +40,19 @@ console.log("country",country)
                                     style={{
                                         default: {
                                             fill: "#15181b",
-                                            outline: "none"
-                                            
+                                            outline: "none",
+                                            // scale:"1.1"
                                         },
                                         hover: {
                                             fill: "#F53",
                                             outline: "none",
-                                            cursor:"pointer"
+                                            cursor:"pointer",
                                         },
                                         pressed: {
                                             fill: "#E42",
                                             outline: "none",
-                                        }
+                                        },
+                                      
                                     }}
                                 />
                             ))
