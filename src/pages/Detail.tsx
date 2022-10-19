@@ -49,9 +49,9 @@ const Detail = () => {
     <main className="flex flex-col md:flex-row md:justify-between container m-auto ">
         
         <img src={flags?.svg} alt={name?.common}  className="w-full md:w-[50%] max-h-[420px] p-5 "/>
-      <section className="p-3 md:w-6/12 ">
+      <section className="p-3 md:w-6/12">
       <div className="flex items-center justify-start p-2">
-        <span className="inline-block w-[2rem] text-2xl text-slate-600"> <FaCity/></span>
+        <span className="inline-block w-[2rem] text-3xl text-slate-600"> <FaCity/></span>
           {
             capital?.map((cap:string,index:number)=>{
               return(
@@ -63,11 +63,11 @@ const Detail = () => {
           }
         </div>
         <div className="flex items-center justify-start p-2">
-          <span className="inline-block w-[2rem] text-2xl text-blue-800"><BiWorld/></span>
+          <span className="inline-block w-[2rem] text-3xl text-blue-800"><BiWorld/></span>
           {region}
         </div>
           <div className="flex items-center justify-start p-2 flex-wrap">
-            <span className="inline-block w-[2rem] text-2xl text-orange-600"><BsTranslate/></span>
+            <span className="inline-block w-[2rem] text-3xl text-orange-600"><BsTranslate/></span>
          
           {
             languages && Object.values(languages)?.map((lang:string,index:number)=>{
@@ -78,7 +78,7 @@ const Detail = () => {
           }
         </div>
         <div className="flex items-center justify-start p-2">
-          <span className="inline-block w-[2rem] text-2xl text-emerald-700"> <GiMoneyStack/></span>
+          <span className="inline-block w-[2rem] text-3xl text-emerald-700"> <GiMoneyStack/></span>
           {
             currencies && Object.values(currencies)?.map((curr:any,index:number)=>{
               return(
@@ -91,7 +91,7 @@ const Detail = () => {
           }
           </div>
         <div className="flex items-center justify-start p-2">
-          <span className="inline-block w-[2rem] text-2xl"><BsFillPeopleFill/></span>
+          <span className="inline-block w-[2rem] text-3xl"><BsFillPeopleFill/></span>
           
           {population} ({millify(Number(population),{
           precision:2,
@@ -100,7 +100,7 @@ const Detail = () => {
         })})
         </div>
         <div className="flex items-center justify-start p-2 flex-wrap">
-          <span className="inline-block w-[2rem] text-2xl text-cyan-600"><BsFillMapFill/></span>
+          <span className="inline-block w-[2rem] text-3xl text-cyan-600"><BsFillMapFill/></span>
           {
             borders?.map((border:string,index:number)=>{
               return(
@@ -110,7 +110,7 @@ const Detail = () => {
           }
         </div>
         <div className="flex items-center justify-start p-2 flex-wrap">
-          <span className="inline-block w-[2rem] text-2xl text-pink-600"><BsPinMapFill/></span>
+          <span className="inline-block w-[2rem] text-3xl text-pink-600"><BsPinMapFill/></span>
           {area} km <sup>2</sup>  ({millify(Number(area),{
           precision:2,
           space:true,
