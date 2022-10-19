@@ -17,4 +17,4 @@
 - __I used TailwindCSS for syling__<br/>
 
 
-<div align="center"><img src="https://github.com/MehmetCakir1/countriesAppWithTypeScript/blo">
+<div align="center"><img src="https://github.com/MehmetCakir1/countriesAppWithTypeScript/blob/master/countryApp.gif">
