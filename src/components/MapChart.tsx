@@ -1,7 +1,4 @@
-import { useAppDispatch, useAppSelector } from "../app/hooks";
-import { getCountry } from "../features/countrySlice";
 import {useNavigate} from "react-router-dom"
-import {useEffect} from "react"
 import {
     ZoomableGroup,
     ComposableMap,
@@ -11,7 +8,6 @@ import {
 
 const MapChart = ({ setTooltipContent,content }) => {
     const navigate=useNavigate()
-   const dispatch=useAppDispatch()
 
 
     const handleCountriesName = () => {     
@@ -20,7 +16,7 @@ const MapChart = ({ setTooltipContent,content }) => {
 
     return (
         <div data-tip="" >
-            <ComposableMap style={{height:"120vh",width:"100vw"}}>
+            <ComposableMap style={{height:"100vh",width:"100vw"}}>
                 <ZoomableGroup >
                     <Geographies geography="/features.json" >
                         {({ geographies }) =>
@@ -41,7 +37,6 @@ const MapChart = ({ setTooltipContent,content }) => {
                                         default: {
                                             fill: "#15181b",
                                             outline: "none",
-                                            // scale:"1.1"
                                         },
                                         hover: {
                                             fill: "#F53",

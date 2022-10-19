@@ -34,7 +34,7 @@ const Detail = () => {
 }
  }, [])
  
-
+console.log("first")
   return (
     <>
     {
@@ -102,11 +102,13 @@ const Detail = () => {
         <div className="flex items-center justify-start p-2 flex-wrap">
           <span className="inline-block w-[2rem] text-3xl text-cyan-600"><BsFillMapFill/></span>
           {
-            borders?.map((border:string,index:number)=>{
+            borders?.length>0 ? borders.map((border:string,index:number)=>{
               return(
                   <span key={index} className="capitalize mr-1">{border}</span>
               )
-            })
+            }):(
+              <p>There is no border country!</p>
+            )
           }
         </div>
         <div className="flex items-center justify-start p-2 flex-wrap">
