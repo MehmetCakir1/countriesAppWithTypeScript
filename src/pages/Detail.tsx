@@ -45,7 +45,7 @@ const Detail = () => {
       ):(
         country==undefined ? (
           <>
-          <h1 className="text-3xl mt-9 sm:mt-[10rem] text-center "><span className="text-red-600 font-bold">{state}</span> Is Not Found</h1>
+          <h1 className="text-3xl mt-9 sm:mt-[10rem] text-center "><span className="text-red-600 font-bold">{state}</span> Has Not Been Found</h1>
           <button className="text-red-500 text-4xl absolute left-3 top-3 bg-transparent border-0"
           onClick={()=>navigate("/")}
           ><IoArrowUndo/></button>
