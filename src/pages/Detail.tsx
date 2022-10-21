@@ -15,14 +15,14 @@ const Detail = () => {
   const dispatch=useAppDispatch()
   const navigate=useNavigate()
   
- useEffect(() => {
+useEffect(() => {
   if(state==="Democratic Republic of Congo"){
     dispatch(getCountry("DR Congo"))
 } else{
   dispatch(getCountry(state))
 }
- }, [])
- 
+}, [])
+
 //  if(Object.keys(country).length>0){
 //    const {
 //   name,

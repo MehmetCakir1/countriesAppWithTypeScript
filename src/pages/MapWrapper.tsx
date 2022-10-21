@@ -18,7 +18,9 @@ const MapWrapper = () => {
 
   return (
     <>
-    <div className="flex justify-center items-center pt-9 w-full max-w-2xl m-auto px-4 flex-wrap">
+    <form className="flex justify-center items-center pt-9 w-full max-w-2xl m-auto px-4 flex-wrap"
+    onSubmit={handleSubmit}
+    >
     <input 
     type="search"
     className="border border-[#f53] p-1 w-8/12 sm:w-7/12 focus:outline-0" 
@@ -28,11 +30,11 @@ const MapWrapper = () => {
     placeholder="Type the country name"
     />
     <button className=" py-1 px-4 border border-[#f53] font-semibold bg-[#f53] text-white transition-all duration-1000 ease-out hover:bg-white hover:text-[#f53]"
-    onClick={handleSubmit}
+    type="submit"
     >SUBMIT</button>
     <img src="images/worldMap.PNG" alt="world-map" className="w-full mt-[5rem]  xs:hidden" />
     <p className="pt-3 indent-4 xs:hidden">The image above is not clickable.Please type the country name in order to see the details of that country</p>
-    </div>
+    </form>
       <div className="hidden xs:block">
         <MapChart setTooltipContent={setContent} content={content} />
         <ReactTooltip>{content}</ReactTooltip>
